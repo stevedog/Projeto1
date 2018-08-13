@@ -1,2 +1,2 @@
 # Projeto de Engenharia de Software 
-O projeto consiste na criacao de um aplicativo que auxilie um determinado público alvo a calcular o rendimento e os lucros de sua empresa, por meio de dados fornecidos pelo próprio usuário como: custos fixos...
+O projeto consiste na criacao de um app de serviços para a area de contabilidade
