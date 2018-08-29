@@ -1,0 +1,7 @@
+{
+  "name": "hackthon",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
