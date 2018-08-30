@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Token</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <div style="background-color: #3fab34; width: 100%; height: 30%;"> 
+ dadiaj
+  </div> -->
+  <div text-center style="background-color: #494949 ">
+    <img src="assets/imgs/avatar.png"  class="avatar" (click)="simularCompra()" />
+    <h5 style="color:white">Francisco Ferreira</h5>
+    <br>
+  </div>
+
+  <ng-template [ngIf]="pagar || receber">
+    <img src="assets/imgs/2x/baseline_close_black_18dp.png" style="width: 20px; height: 20px; margin-top: 10px; margin-left: 10px;"
+      (click)="voltar()" />
+  </ng-template>
+
+  <!-- Tela de pagar -->
+  <ng-template [ngIf]="pagar">
+      <ion-item >
+        <ion-label color="primary" fixed>Seu Token</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="token" placeholder="Digite seu token"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tempo de expiração</ion-label>
+        <ion-range min="1" max="30" step="1" snaps="true" color="secondary" [(ngModel)]="range"></ion-range>
+        
+      </ion-item>
+      <div text-center >
+        <p>{{range}} dia(s)</p>
+        <button ion-button color="dark" outline (click)="ativarToken()">Confirmar token</button>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="tokenCriado">
+        
+        <div text-center >
+          <h5>Seu Token:{{token}}</h5>
+          <p>Você tem {{range}} dia(s) para usar</p>
+        </div>
+      </ng-template>
+  <br>
+  <br>
+  <br>
+
+  <ng-template [ngIf]="pagar == false && receber == false && fechaPagamento == false">
+    <div class="button" (click)="ativarPagamento()">
+      <img src="assets/imgs/payment-method.png" class="icone">
+      <p style="margin-right: 10px">Gerar um token para pagamento</p>
+    </div>
+    <br>
+    <div class="button" (click)="ativarRecebimento()">
+      <img src="assets/imgs/income.png" class="icone">
+      <p style="margin-right: 10px">Gerar um valor para receber</p>
+    </div>
+  </ng-template>
+
+
+  
+
+  <!-- Tela de receber -->
+  <ng-template [ngIf]="receber == true && tokenAtivado == false">
+
+    <ion-item style="margin-top: 30px">
+      <ion-label fixed>R$</ion-label>
+      <ion-input type="number" value="" [(ngModel)]="valor_receber"></ion-input>
+    </ion-item>
+
+    <br>
+    <div text-center>
+      <button ion-button color="dark" outline (click)="confirmarValor()">Confirmar valor</button>
+    </div>
+
+  </ng-template>
+
+  <!-- Tela de recebimento de token -->
+  <ng-template [ngIf]="tokenAtivado ">
+    <ion-item>
+      <ion-label floating>Token</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="tokenPagador"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" value="" [(ngModel)]="senhaPagador"></ion-input>
+    </ion-item>
+
+    <div text-center>
+      <button ion-button color="dark" outline (click)="simularCompra()">Pagar</button>
+    </div>
+  </ng-template>
+
+  <br>
+  <br>
+  <!-- Tela de pagamento Concluido -->
+  <ng-template [ngIf]="fechaPagamento == true">
+    <ng-template [ngIf]="spinner == true">
+      <div text-center>
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="spinner == false">
+      <div text-center>
+        <img src="assets/imgs/correct-signal.png" (click)="voltar()" />
+        <h5>Pagamento concluído com sucesso</h5>
+      </div>
+    </ng-template>
+
+  </ng-template>
+
+</ion-content>
